@@ -1,57 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Minimal Text Site</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#758dc5" />
+  <title>SkyGlass | Weather Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
 <body>
-
-  <header>
-    <h1>Minimal Notes</h1>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#articles">Articles</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <section id="about">
-      <h2>Simplicity in Design</h2>
-      <p>
-        This is a simple, text-focused template designed for fast loading times and effortless reading. 
-        It strips away heavy scripts and complex layouts in favor of clean typography and natural spacing.
-      </p>
-    </section>
-
-    <hr>
-
-    <section id="articles">
-      <h2>Recent Writing</h2>
-      <article>
-        <h3>1. Why Fast Sites Matter</h3>
-        <p>Text takes up very little bandwidth. By eliminating unneeded graphics, your content renders instantly on any device.</p>
+  <div class="orb orb-one" aria-hidden="true"></div><div class="orb orb-two" aria-hidden="true"></div>
+  <main class="app">
+    <header class="topbar glass">
+      <a class="brand" href="#home" aria-label="SkyGlass home"><span class="brand-icon">☁</span> SkyGlass<span class="brand-dot">.</span></a>
+      <form id="searchForm" class="search" role="search">
+        <label for="cityInput" class="sr-only">Search city</label>
+        <span aria-hidden="true">⌕</span><input id="cityInput" type="search" placeholder="Search city (e.g. Kuala Lumpur)" autocomplete="off" required />
+        <button type="submit" aria-label="Search weather">Search</button>
+      </form>
+      <div class="top-date" id="todayDate">—</div>
+    </header>
+    <div id="status" class="status" role="status" aria-live="polite">Loading weather…</div>
+    <section class="dashboard" id="home">
+      <article class="glass hero">
+        <div class="eyebrow">CURRENT WEATHER <span class="live-dot"></span> LIVE</div>
+        <div class="hero-top"><div><h1 id="cityName">—</h1><p id="countryName">Weather overview</p></div><div class="weather-symbol" id="weatherIcon" aria-hidden="true">☀️</div></div>
+        <div class="temperature"><span id="temperature">--</span><span class="unit">°C</span></div>
+        <h2 id="condition">Getting forecast…</h2>
+        <p class="feels">Feels like <strong id="feelsLike">--°C</strong></p>
+        <div class="hero-bottom"><span>↑ <strong id="highTemp">--°</strong> High</span><span>↓ <strong id="lowTemp">--°</strong> Low</span></div>
       </article>
-
-      <article>
-        <h3>2. Clean Typography Basics</h3>
-        <p>Good readability comes down to three core rules: proper line length, adequate line height, and high contrast between text and background.</p>
+      <article class="glass details"><div class="section-head"><div><span class="eyebrow">ATMOSPHERE</span><h2>Weather details</h2></div><span class="section-icon">✦</span></div>
+        <div class="metrics">
+          <div class="metric"><span class="metric-icon">💧</span><div><p>Humidity</p><strong id="humidity">--%</strong></div></div>
+          <div class="metric"><span class="metric-icon">🍃</span><div><p>Wind speed</p><strong id="wind">-- km/h</strong></div></div>
+          <div class="metric"><span class="metric-icon">☔</span><div><p>Precipitation</p><strong id="precip">-- mm</strong></div></div>
+          <div class="metric"><span class="metric-icon">☀</span><div><p>UV index (max)</p><strong id="uv">--</strong></div></div>
+        </div>
+        <div class="sun-row"><div><p>Sunrise</p><strong id="sunrise">--:--</strong></div><div class="sun-track"><span>☀</span></div><div><p>Sunset</p><strong id="sunset">--:--</strong></div></div>
       </article>
+      <section class="glass hourly panel"><div class="section-head"><div><span class="eyebrow">NEXT HOURS</span><h2>Hourly forecast</h2></div><span class="pill">Next 8 hours</span></div><div id="hourlyForecast" class="hourly-grid"></div></section>
+      <section class="glass weekly panel"><div class="section-head"><div><span class="eyebrow">LOOKING AHEAD</span><h2>7-day forecast</h2></div><span class="pill">This week</span></div><div id="weeklyForecast" class="weekly-list"></div></section>
     </section>
-
-    <hr>
-
-    <section id="contact">
-      <h2>Get in Touch</h2>
-      <p>You can find more projects or drop a message via email at <a href="mailto:hello@example.com">hello@example.com</a>.</p>
-    </section>
+    <footer>Made with ☁ · Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> · Times shown in the selected city's timezone</footer>
   </main>
-
-  <footer>
-    <p>&copy; 2026 Minimalist Site. Built with HTML &amp; CSS.</p>
-  </footer>
-
 </body>
 </html>
